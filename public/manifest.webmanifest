@@ -1,0 +1,17 @@
+{
+  "name": "UnionDrive #16",
+  "short_name": "UnionDrive",
+  "description": "Everyday rides, made easy.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f2f4f6",
+  "theme_color": "#f2f4f6",
+  "icons": [
+    {
+      "src": "/uniondrive-mark.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
