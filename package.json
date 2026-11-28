@@ -3,22 +3,44 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
+  "engines": {
+    "node": ">=22.13.0"
+  },
   "scripts": {
-    "dev": "vite --host 0.0.0.0",
-    "build": "tsc -b && vite build",
+    "dev": "concurrently -k -n api,web -c blue,green \"npm:dev:api\" \"npm:dev:web\"",
+    "dev:api": "tsx watch server/index.ts",
+    "dev:web": "vite --host 127.0.0.1",
+    "start": "node --env-file-if-exists=.env dist-server/server/index.js",
+    "build": "tsc -b && tsc -p tsconfig.server.json && vite build",
+    "test": "tsx --test server/**/*.test.ts",
     "preview": "vite preview --host 0.0.0.0",
     "typecheck": "tsc -b --pretty"
   },
   "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "better-sqlite3": "^12.2.0",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.1.0",
+    "helmet": "^8.1.0",
     "lucide-react": "^0.468.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "zod": "^4.1.0"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.3.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "@vitejs/plugin-react": "^4.3.4",
+    "@types/supertest": "^6.0.3",
+    "concurrently": "^9.2.1",
+    "supertest": "^7.1.4",
     "typescript": "~5.7.2",
+    "tsx": "^4.20.5",
     "vite": "^6.0.5"
   }
 }
